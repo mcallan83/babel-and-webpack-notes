@@ -4,10 +4,15 @@
 
 ## Sources
 
+- [Babel Polyfills](https://babeljs.io/docs/usage/polyfill/)
+- [Babel Require Hook](https://babeljs.io/docs/usage/require/)
+- [ECMAScript 6](http://git.io/es6features)
 - [ES6 Cheatsheet](http://jamesknelson.com/wp-content/uploads/2015/09/es6-cheatsheet.pdf)
+- [Learn ES2015](http://babeljs.io/docs/learn-es2015/)
 - [Promises Cheatsheet](http://jamesknelson.com/wp-content/uploads/2015/09/promises-cheatsheet.pdf)
+- [The Six Things You Need To Know About Babel 6](http://jamesknelson.com/the-six-things-you-need-to-know-about-babel-6/)
+- [Using ES6 and ES7 in the Browser, with Babel 6 and Webpack](http://jamesknelson.com/using-es6-in-the-browser-with-babel-6-and-webpack/)
 - [Webpack Made Simple: Building ES6 & LESS with autorefresh](http://jamesknelson.com/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/)
-
 
 ## Babel 6 NPM packages
 
@@ -54,6 +59,7 @@ Start with an empty folder. Run `npm init` to create an empty `package.json` fil
 `npm install babel-polyfill --save`
 
 
+- to use, add `require("babel-polyfill");` at the top of entry point to application
 - helper code is injected into single files, which can result in repeated code for a larger multi-file project
 - to prevent repeated code, use `transform-runtime`
 
@@ -141,4 +147,25 @@ devServer: {
 
 `node_modules/webpack-dev-server/bin/webpack-dev-server.js`
 
+### Compiling LESS\Sass
 
+- Install the following Webpack loaders:
+
+    - For LESS:
+
+        `npm install style-loader autoprefixer-loader css-loader less-loader --save-dev`
+
+    - For SASS:
+
+        `npm install style-loader autoprefixer-loader css-loader scss-loader --save-dev`
+
+- Update webpack.config.js:
+
+    -Add a new object in the `module.loaders` section of `webpack.config.js` to handle the LESS or SASS
+
+    ```
+    { 
+        test: /\.less$/,
+        loader: "style!css!autoprefixer!less"
+    }
+    ```
